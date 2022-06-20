@@ -66,7 +66,31 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Registrarse" />
+
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="textStart" />
+
+            <Button
+                android:id="@+id/google_button"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableStart="@mipmap/google2"
+                android:text="Google"
+                android:textColor="@android:color/primary_text_dark" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
