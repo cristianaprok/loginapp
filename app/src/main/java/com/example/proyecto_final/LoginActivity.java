@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     public static final int RC_SIGN_IN = 321;
     public static final String TAG = "GoogleSignIn";
 
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
