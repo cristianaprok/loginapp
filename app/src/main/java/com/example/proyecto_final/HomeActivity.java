@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -42,6 +43,12 @@ public class HomeActivity extends AppCompatActivity {
                     edit_severidad.getText().toString(),
                     edit_estado.getText().toString()
                     );
+            dao.add(derrumbe).addOnSuccessListener(suc ->{
+                Toast.makeText(this,"Derrumbe guardado",Toast.LENGTH_SHORT)
+            }).addOnFailureListener(er ->
+            {
+                Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+            });
         });
         }
 
