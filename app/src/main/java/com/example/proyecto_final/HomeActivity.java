@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
             {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
+            goToMainActivity();
         });
         }
 
