@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,37 +18,32 @@ import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
-    public static final String TAG = "GoogleSignIn";
-    TextView tvUserName;
-    TextView tvUserEmail;
-    ImageView userImageView;
-    Button btnSignOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        tvUserName = findViewById(R.id.userName);
-        tvUserEmail = findViewById(R.id.userEmail);
-        userImageView = findViewById(R.id.userImage);
-        btnSignOut = findViewById(R.id.btnLogout);
+        EditText edit_canton = findViewById(R.id.edit_canton);
+        EditText edit_distrito = findViewById(R.id.edit_distrito);
+        EditText edit_nombre = findViewById(R.id.edit_name);
+        EditText edit_fecha = findViewById(R.id.edit_fecha);
+        EditText edit_severidad = findViewById(R.id.edit_severidad);
+        EditText edit_estado = findViewById(R.id.edit_estado);
+        Button btn = findViewById(R.id.btn_submit);
+        DerrumbeDAO dao = new DerrumbeDAO();
 
-
-        SharedPreferences preferences = this.getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String userName = preferences.getString("username","");
-        String userEmail = preferences.getString("useremail", "");
-        String userImageUrl = preferences.getString("userPhoto","");
-
-        tvUserName.setText(userName);
-        tvUserEmail.setText(userEmail);
-        //Glide.with(this).load(userImageUrl).into(userImageView);
-
-        btnSignOut.setOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            goToMainActivity();
+        btn.setOnClickListener(v -> {
+            Derrumbe derrumbe = new Derrumbe(
+                    edit_canton.getText().toString(),
+                    edit_distrito.getText().toString(),
+                    edit_nombre.getText().toString(),
+                    edit_fecha.getText().toString(),
+                    edit_severidad.getText().toString(),
+                    edit_estado.getText().toString()
+                    );
         });
-    }
+        }
 
     private void goToMainActivity() {
         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
