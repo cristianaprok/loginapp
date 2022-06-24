@@ -78,5 +78,13 @@
         android:text="Submit"
         android:textColor="@android:color/white"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_logout"
+        android:background="@android:color/holo_blue_bright"
+        android:text="Submit"
+        android:textColor="@android:color/white"/>
+
 
 </LinearLayout>

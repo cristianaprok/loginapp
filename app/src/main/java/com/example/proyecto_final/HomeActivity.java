@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         EditText edit_severidad = findViewById(R.id.edit_severidad);
         EditText edit_estado = findViewById(R.id.edit_estado);
         Button btn = findViewById(R.id.btn_submit);
+        Button btnSignOut = findViewById(R.id.btn_logout);
         DerrumbeDAO dao = new DerrumbeDAO();
 
         btn.setOnClickListener(v -> {
@@ -49,7 +50,10 @@ public class HomeActivity extends AppCompatActivity {
             {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
-            goToMainActivity();
+            btnSignOut.setOnClickListener(view -> {
+                FirebaseAuth.getInstance().signOut();
+                goToMainActivity();
+            });
         });
         }
 
