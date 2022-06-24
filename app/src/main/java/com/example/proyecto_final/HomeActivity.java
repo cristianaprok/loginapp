@@ -24,36 +24,16 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        EditText edit_canton = findViewById(R.id.edit_canton);
-        EditText edit_distrito = findViewById(R.id.edit_distrito);
-        EditText edit_nombre = findViewById(R.id.edit_name);
-        EditText edit_fecha = findViewById(R.id.edit_fecha);
-        EditText edit_severidad = findViewById(R.id.edit_severidad);
-        EditText edit_estado = findViewById(R.id.edit_estado);
-        Button btn = findViewById(R.id.btn_submit);
         Button btnSignOut = findViewById(R.id.btn_logout);
-        DerrumbeDAO dao = new DerrumbeDAO();
+        Button btnNuevo = findViewById(R.id.btn_submit);
 
-        btn.setOnClickListener(v -> {
-            Derrumbe derrumbe = new Derrumbe(
-                    edit_canton.getText().toString(),
-                    edit_distrito.getText().toString(),
-                    edit_nombre.getText().toString(),
-                    edit_fecha.getText().toString(),
-                    edit_severidad.getText().toString(),
-                    edit_estado.getText().toString()
-                    );
-            dao.add(derrumbe).addOnSuccessListener(suc ->{
-                Toast.makeText(this,"Derrumbe guardado",Toast.LENGTH_SHORT);
-            }).addOnFailureListener(er ->
-            {
-                Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-            btnSignOut.setOnClickListener(view -> {
-                FirebaseAuth.getInstance().signOut();
-                goToMainActivity();
-            });
+        btnSignOut.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            goToMainActivity();
+        });
+
+        btnNuevo.setOnClickListener(view ->{
+            startActivity(new Intent(HomeActivity.this, RegisterDerrumbe.class));
         });
         }
 
