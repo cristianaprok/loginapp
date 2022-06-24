@@ -83,8 +83,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_logout"
         android:background="@android:color/holo_blue_bright"
-        android:text="Submit"
+        android:text="LogOut"
         android:textColor="@android:color/white"/>
-
 
 </LinearLayout>
