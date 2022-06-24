@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Proyecto_final"
         tools:targetApi="31">
         <activity
+            android:name=".RegisterDerrumbe"
+            android:exported="false" />
+        <activity
             android:name=".PantallaDosActivity"
             android:exported="false" />
         <activity

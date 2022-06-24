@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1EFFFFFF"
-    android:backgroundTint="#C6C2C2"
-    tools:context=".HomeActivity"
-    android:padding="15dp"
-    android:orientation="vertical">
+    tools:context=".RegisterDerrumbe">
 
     <TextView
         android:layout_width="wrap_content"
