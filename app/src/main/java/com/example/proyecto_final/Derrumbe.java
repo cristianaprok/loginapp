@@ -9,8 +9,9 @@ public class Derrumbe {
     private String fechaReporte;
     private String severidad;
     private String estado;
+    private String id;
 
-    public Derrumbe(String canton, String distrito, String direccionMaps, String nombreDerrumbeHueco, String fechaReporte, String severidad, String estado) {
+    public Derrumbe(String canton, String distrito, String direccionMaps, String nombreDerrumbeHueco, String fechaReporte, String severidad, String estado, String id) {
         this.canton = canton;
         this.distrito = distrito;
         this.direccionMaps = direccionMaps;
@@ -18,6 +19,15 @@ public class Derrumbe {
         this.fechaReporte = fechaReporte;
         this.severidad = severidad;
         this.estado = estado;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCanton() {
