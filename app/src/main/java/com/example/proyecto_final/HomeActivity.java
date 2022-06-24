@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
                     edit_estado.getText().toString()
                     );
             dao.add(derrumbe).addOnSuccessListener(suc ->{
-                Toast.makeText(this,"Derrumbe guardado",Toast.LENGTH_SHORT)
+                Toast.makeText(this,"Derrumbe guardado",Toast.LENGTH_SHORT);
             }).addOnFailureListener(er ->
             {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
