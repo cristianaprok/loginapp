@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,21 +29,54 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
+
     private SignInButton btnSignInWithGoogle;
     private GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN = 321;
     public static final String TAG = "GoogleSignIn";
 
+
+    private EditText correoEdit;
+    private EditText passwordEdit;
+    private Button btnLogin;
+
+    private String email;
+    private String password;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        correoEdit = findViewById(R.id.edit_correo);
+        passwordEdit = findViewById(R.id.edit_password);
+        btnLogin = findViewById(R.id.btn_login);
+
         btnSignInWithGoogle = findViewById(R.id.btnGoogleSignIn);
         mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         requestGoogleSignIn();
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email = correoEdit.getText().toString();
+                password = passwordEdit.getText().toString();
+                if(!email.isEmpty() && !password.isEmpty()){
+                    signInAdmin();
+                }else{
+                    Toast.makeText(LoginActivity.this, "Complete los espacios", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         btnSignInWithGoogle.setOnClickListener(view -> {
             signIn();
@@ -53,11 +89,11 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            finish();
         }
     }
 
     private void requestGoogleSignIn(){
-        // Configure sign-in to request the user’s basic profile like name and email
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("368477274911-ise5qbp13hf60card2kc8hqr2cl7tqhi.apps.googleusercontent.com")
                 .requestEmail()
@@ -71,6 +107,21 @@ public class LoginActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    private void signInAdmin(){
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                    finish();
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "Error en el inicio de sesion", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void firebaseAuthWithGoogle(String idToken) {
 
         //getting user credentials with the help of AuthCredential method and also passing user Token Id.
@@ -82,12 +133,21 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             Log.d(TAG, "signInWithCredential:success");
+                            String id = mAuth.getCurrentUser().getUid();
+                            String name = mAuth.getCurrentUser().getDisplayName();
+                            String email = mAuth.getCurrentUser().getEmail();
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("name",name);
+                            map.put("email",email);
+                            map.put("password",id);
+                            map.put("role","monitoreador");
 
+                            databaseReference.child("User").child(id).setValue(map);
                             // Sign in success, navigate user to Profile Activity
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
+                            finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -133,6 +193,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }

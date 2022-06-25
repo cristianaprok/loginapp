@@ -39,5 +39,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void goToMainActivity() {
         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+        finish();
     }
 }
