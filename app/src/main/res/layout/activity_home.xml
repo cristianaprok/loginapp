@@ -19,13 +19,14 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp"/>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_submit"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="10dp"
         android:background="@android:color/holo_blue_bright"
-        android:text="Nuevo"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"/>
+        android:src="@drawable/ic_add_black_24dp"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
