@@ -38,25 +38,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/edit_name"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fecha"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_fecha"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Severidad"/>
 
-    <EditText
+
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_severidad"/>
+        android:layout_height="161dp"
+        android:id="@+id/radio_severidad">
+
+        <RadioButton
+            android:id="@+id/radio_alta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alta"
+            android:width="20dp" />
+
+        <RadioButton
+            android:id="@+id/radio_media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="20dp"
+            android:text="Media" />
+
+        <RadioButton
+            android:id="@+id/radio_baja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Baja"
+            android:width="20dp"/>
+    </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,6 +89,9 @@
         android:id="@+id/btn_submit"
         android:background="@android:color/holo_blue_bright"
         android:text="Submit"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:onClick="Guardar"/>
+
+
 
 </LinearLayout>

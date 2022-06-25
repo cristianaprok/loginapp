@@ -30,4 +30,13 @@ public class DerrumbeDAO {
     public Task<Void> delete(String key){
         return databaseReference.child(key).removeValue();
     }
+
+    public Query get(String key)
+    {
+        if(key == null)
+        {
+            return databaseReference.orderByKey().orderByChild("severidad");
+        }
+        return databaseReference.orderByKey().orderByChild("fecha");
+    }
 }

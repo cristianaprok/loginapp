@@ -2,19 +2,18 @@ package com.example.proyecto_final;
 
 public class Derrumbe {
 
-    private String canton;
-    private String distrito;
-    private String direccionMaps;
+    private String latitud;
+    private String longitud;
+    //private String direccionMaps;
     private String nombreDerrumbeHueco;
     private String fechaReporte;
     private String severidad;
     private String estado;
     private String id;
 
-    public Derrumbe(String canton, String distrito, String nombreDerrumbeHueco, String fechaReporte, String severidad, String estado) {
-        this.canton = canton;
-        this.distrito = distrito;
-        this.direccionMaps = direccionMaps;
+    public Derrumbe(String latitud, String longitud, String nombreDerrumbeHueco, String fechaReporte, String severidad, String estado) {
+        this.latitud = latitud;
+        this.longitud = longitud;
         this.nombreDerrumbeHueco = nombreDerrumbeHueco;
         this.fechaReporte = fechaReporte;
         this.severidad = severidad;
@@ -29,28 +28,20 @@ public class Derrumbe {
         this.id = id;
     }
 
-    public String getCanton() {
-        return canton;
+    public String getLatitud() {
+        return latitud;
     }
 
-    public void setCanton(String canton) {
-        this.canton = canton;
+    public void setLatitud(String  latitud) {
+        this.latitud = latitud;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public String  getLongitud() {
+        return longitud;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
-    }
-
-    public String getDireccionMaps() {
-        return direccionMaps;
-    }
-
-    public void setDireccionMaps(String direccionMaps) {
-        this.direccionMaps = direccionMaps;
+    public void setLongitud(String  longitud) {
+        this.longitud = longitud;
     }
 
     public String getNombreDerrumbeHueco() {
