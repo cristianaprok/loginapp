@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         btnSignOut.setOnClickListener(view -> {
             FirebaseAuth.getInstance().signOut();
             goToMainActivity();
+            finish();
         });
 
         btnNuevo.setOnClickListener(view ->{

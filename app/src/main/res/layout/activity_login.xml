@@ -30,7 +30,7 @@
         android:background="@color/purple_200"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="100dp"
-        android:id="@+id/btn_login"/>
+        android:id="@+id/btn_login" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnGoogleSignIn"
